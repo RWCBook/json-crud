@@ -27,6 +27,7 @@ var root         = '';
 var port         = (process.env.PORT || 8181);
 
 var htmlType     = "text/html";
+var jsonType     = "application/json";
 var wstlType     = "application/vnd.wstl+json";
 
 var csType       = '';
@@ -52,9 +53,10 @@ function handler(req, res) {
   doc = null;
 
   // rudimentary accept-header handling
+  // default to JSON
   csAccept = req.headers["accept"];
   if(!csAccept || csAccept.indexOf(htmlType)!==-1) {
-    csType = htmlType;
+    csType = jsonType;
   }
   else {
     csType = csAccept.split(',')[0];

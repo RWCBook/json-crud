@@ -121,7 +121,7 @@ function sendListPage(req, res, respond) {
   doc.actions = coll;
   doc.data =  data;
   doc.content = content;
-  respond(req, res, {code:200, doc:{task:doc}});
+  respond(req, res, {code:200, doc:{user:doc}});
 }
 
 function sendItemPage(req, res, respond, id) {
@@ -167,7 +167,7 @@ function sendItemPage(req, res, respond, id) {
     doc.actions = coll;
     doc.data =  data;
     doc.content = content;
-    respond(req, res, {code:200, doc:{task:doc}});        
+    respond(req, res, {code:200, doc:{user:doc}});        
   }
 }
 
@@ -214,7 +214,7 @@ function sendPasswordPage(req, res, respond, id) {
     doc.actions = coll;
     doc.data =  data;
     doc.content = content;
-    respond(req, res, {code:200, doc:{task:doc}});        
+    respond(req, res, {code:200, doc:{user:doc}});        
   }
 }
 

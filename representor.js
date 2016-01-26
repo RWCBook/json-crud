@@ -9,17 +9,18 @@
 // handles internal representation routing (based on conneg)
 
 // load representors
-var html = require('./representors/html.js');
+//var html = require('./representors/html.js');
+var json = require('./representors/json.js');
 var wstljson = require('./representors/wstljson.js');
 
-var defaultFormat = "text/html";
+var defaultFormat = "application/json";
 
 module.exports = main;
 
 function main(object, mimeType, root) {
   var doc;
 
-  // clueless? assume HTML
+  // clueless? assume JSON
   if (!mimeType) {
     mimeType = defaultFormat;
   }
@@ -29,11 +30,11 @@ function main(object, mimeType, root) {
     case "application/vnd.wstl+json":
       doc = wstljson(object, root);
       break;
-    case "text/html":
-      doc = html(object, root);
+    case "application/json":
+      doc = json(object, root);
       break;
     default:
-      doc = html(object, root);
+      doc = json(object, root);
       break;
   }
 
