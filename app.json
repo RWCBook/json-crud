@@ -1,7 +1,7 @@
 {
-  "name": "Task Processing System (HTML)",
-  "description": "The HTML-only version of the TPS sample NodeJS app from @RWCBook",
-  "repository": "https://github.com/RWCBook/html-only",
+  "name": "Task Processing System (CRUD)",
+  "description": "The JSON RPC-CRUD version of the TPS sample NodeJS app from @RWCBook",
+  "repository": "https://github.com/RWCBook/json-crud",
   "logo": "https://avatars2.githubusercontent.com/u/16432667?v=3&s=200",
-  "keywords": ["Hypermedia", "REST", "RWCBook"]
+  "keywords": ["Hypermedia", "REST", "RWCBook", "JSON", "CRUD", "RPC"]
 }
