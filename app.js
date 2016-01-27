@@ -77,11 +77,11 @@ function handler(req, res) {
     return;
   }
 
-  // handle root call (route to /home/)
+  // handle root call (route to /task/)
   try {
     if(flg===false && reRoot.test(req.url)) {
       handleResponse(req, res, 
-        {code:302, doc:"", headers:{'location':'//'+req.headers.host+"/home/"}}
+        {code:302, doc:"", headers:{'location':'//'+req.headers.host+"/task/"}}
       );
     }
   }
