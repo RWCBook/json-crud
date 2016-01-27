@@ -7,6 +7,7 @@
 
 // json representor
 // strip out action info
+// just send data objects
 module.exports = json;
 
 function json(object) {
@@ -22,10 +23,6 @@ function json(object) {
       if (object[p].data) {
         object[p] = object[p].data;
         delete object[p].data;
-        for(i=0,x=object[p].length;i<x;i++) {
-          delete object[p][i].completed;
-          delete object[p][i].meta;
-        } 
       } 
       break;
     }

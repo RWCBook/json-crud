@@ -34,10 +34,12 @@ function main(req, res, parts, respond) {
   flag=false;
   switch (req.method) {
     case 'GET':
+      /* Web API no longer serves up passwordChange page
       if(flag===false && parts[1]==="pass" && parts[2]) {
         flag=true;
         sendPasswordPage(req, res, respond, parts[2]);
       }
+      */
       if(flag===false && parts[1] && parts[1].indexOf('?')===-1) {
         flag = true;
         sendItemPage(req, res, respond, parts[1]);
@@ -48,9 +50,11 @@ function main(req, res, parts, respond) {
     case 'POST':
       if(parts[1] && parts[1].indexOf('?')===-1) {
         switch(parts[1].toLowerCase()) {
+          /* Web API no longer supports update via POST
           case "update":
             updateUser(req, res, respond, parts[2]); 
             break;
+          */  
           case "pass":
             changePassword(req, res, respond, parts[2]); 
             break;
@@ -64,6 +68,16 @@ function main(req, res, parts, respond) {
       else {
         addUserItem(req, res, respond);
       }
+      break;
+      case 'PUT':
+        if(parts[1] && parts[1].indexOf('?')===-1) {
+          updateUser(req, res, respond, parts[1]);
+        }
+        else {
+          respond(req, res, 
+            utils.errorResponse(req, res, 'Method Not Allowed', 405)
+          );          
+        }
       break;
     default:
       respond(req, res, utils.errorResponse(req, res, 'Method Not Allowed', 405));

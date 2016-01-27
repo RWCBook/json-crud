@@ -35,6 +35,7 @@ function main(req, res, parts, respond) {
   flag = false;
   switch (req.method) {
     case 'GET':
+      /* Web API no longer serves up assign and completed forms
       if(flag===false && parts[1]==="assign" && parts[2]) {
         flag=true;
         sendAssignPage(req, res, respond, parts[2]);
@@ -43,6 +44,7 @@ function main(req, res, parts, respond) {
         flag=true;
         sendCompletedPage(req, res, respond, parts[2]);
       }
+      */
       if(flag===false && parts[1] && parts[1].indexOf('?')===-1) {
         flag = true;
         sendItemPage(req, res, respond, parts[1]);
@@ -54,12 +56,14 @@ function main(req, res, parts, respond) {
     case 'POST':
       if(parts[1] && parts[1].indexOf('?')===-1) {
         switch(parts[1].toLowerCase()) {
+          /* Web API no longer supports update & remove via POST
           case "update":
             updateTask(req, res, respond, parts[2]); 
             break;
           case "remove":
             removeTask(req, res, respond, parts[2]);
             break;
+          */  
           case "completed":
             markCompleted(req, res, respond, parts[2]);
             break;  
@@ -76,6 +80,26 @@ function main(req, res, parts, respond) {
         addTask(req, res, respond);
       }
     break;
+    case 'PUT':
+      if(parts[1] && parts[1].indexOf('?')===-1) {
+        updateTask(req, res, respond, parts[1]);
+      }
+      else {
+        respond(req, res, 
+          utils.errorResponse(req, res, 'Method Not Allowed', 405)
+        );          
+      }
+    break;
+    case 'DELETE':
+      if(parts[1] && parts[1].indexOf('?')===-1) {
+        removeTask(req, res, respond, parts[1]);
+      }
+      else {
+        respond(req, res, 
+          utils.errorResponse(req, res, 'Method Not Allowed', 405)
+        );          
+      }
+    break;    
   default:
     respond(req, res, utils.errorResponse(req, res, 'Method Not Allowed', 405));
     break;
